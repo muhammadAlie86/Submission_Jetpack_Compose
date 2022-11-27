@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Submission Jetpack Compose</string>
+    <string name="home">Home</string>
+    <string name="destination">Destination</string>
+    <string name="about">About</string>
+    <string name="favorite">Favorite</string>
+    <string name="text_no_data_found">Data Not Found</string>
+    <string name="text_destination_list">Destination</string>
+    <string name="text_favorite_list">Favorite</string>
+</resources>
