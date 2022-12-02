@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.FlowCollector
 import javax.inject.Inject
 
 class AddFavoriteList @Inject constructor(
-    private val destinationRepository: DestinationRepository
+    private val destinationRepository: DestinationRepository,
 ) : LocalUseCase<AddFavoriteList.Params, Unit>(){
 
     data class Params(
@@ -19,6 +19,5 @@ class AddFavoriteList @Inject constructor(
         destinationRepository.saveFavoriteList(listOf(params.entityList.toEntity()))
         emit(Unit)
     }
-
 
 }

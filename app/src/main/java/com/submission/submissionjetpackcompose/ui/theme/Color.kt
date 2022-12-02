@@ -42,7 +42,15 @@ val Gray700 = Color(0xFF616161)
 val Gray800 = Color(0xFF292929)
 val Gray900 = Color(0xFF212121)
 val Gray950 = Color(0xFF141414)
+val ShimmerColorShades = listOf(
 
+    Color.LightGray.copy(0.9f),
+
+    Color.LightGray.copy(0.2f),
+
+    Color.LightGray.copy(0.9f)
+
+)
 val selectedBottomItemColor = Red
 val unselectedBottomItemColor = Gray500
 

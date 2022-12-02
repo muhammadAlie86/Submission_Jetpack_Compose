@@ -10,6 +10,6 @@ import com.submission.submissionjetpackcompose.data.room.dao.DestinationFavorite
     version = 1,
     exportSchema = false
 )
-abstract class CafeDatabase : RoomDatabase() {
-    abstract fun cafeFavoriteDao(): DestinationFavoriteDao
+abstract class DestinationDatabase : RoomDatabase() {
+    abstract fun destinationFavoriteDao(): DestinationFavoriteDao
 }

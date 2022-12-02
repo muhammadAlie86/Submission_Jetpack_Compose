@@ -13,9 +13,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.submission.submissionjetpackcompose.R
 import com.submission.submissionjetpackcompose.domain.model.DestinationDomain
 import com.submission.submissionjetpackcompose.presentation.component.DestinationToolbar
+import com.submission.submissionjetpackcompose.presentation.component.DialogBoxLoadingView
 import com.submission.submissionjetpackcompose.presentation.component.EmptyView
 import com.submission.submissionjetpackcompose.presentation.component.ErrorView
-import com.submission.submissionjetpackcompose.presentation.component.LoadingView
 import com.submission.submissionjetpackcompose.presentation.view.list.DestinationContent
 import com.submission.submissionjetpackcompose.presentation.view.list.DestinationEvent
 import com.submission.submissionjetpackcompose.presentation.view.list.DestinationState
@@ -78,7 +78,7 @@ private fun DestinationPage(
             viewModel = viewModel,
             paddingValues = PaddingValues(5.dp),
             viewState = uiState.cast<BaseViewState.Data<DestinationState>>().value,
-            selectItem = { id -> navigator.openCafeDetail(id) }
+            selectItem = { id -> navigator.openDestinationDetail(id) }
         )
         is BaseViewState.Empty -> EmptyView(modifier = modifier)
         is BaseViewState.Error -> ErrorView(
@@ -86,7 +86,7 @@ private fun DestinationPage(
         ) {
             viewModel.onTriggerEvent(DestinationEvent.LoadDestination)
         }
-        is BaseViewState.Loading -> LoadingView()
+        is BaseViewState.Loading -> DialogBoxLoadingView()
         else -> {}
     }
 

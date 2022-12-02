@@ -3,7 +3,7 @@ package com.submission.submissionjetpackcompose.di
 import android.content.Context
 import androidx.room.Room
 import com.submission.submissionjetpackcompose.data.room.dao.DestinationFavoriteDao
-import com.submission.submissionjetpackcompose.data.room.db.CafeDatabase
+import com.submission.submissionjetpackcompose.data.room.db.DestinationDatabase
 import com.submission.submissionjetpackcompose.utils.constanta.Constants.DB_NAME
 import dagger.Module
 import dagger.Provides
@@ -29,16 +29,16 @@ class DatabaseModule {
     fun provideDatabase(
         @Named(value = DB_NAME) dbname: String,
         @ApplicationContext context: Context
-    ): CafeDatabase {
-        return Room.databaseBuilder(context, CafeDatabase::class.java, dbname)
+    ): DestinationDatabase {
+        return Room.databaseBuilder(context, DestinationDatabase::class.java, dbname)
             .fallbackToDestructiveMigration()
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideCharacterFavoriteDao(appDatabase: CafeDatabase): DestinationFavoriteDao {
-        return appDatabase.cafeFavoriteDao()
+    fun provideCharacterFavoriteDao(appDatabase: DestinationDatabase): DestinationFavoriteDao {
+        return appDatabase.destinationFavoriteDao()
     }
 
 

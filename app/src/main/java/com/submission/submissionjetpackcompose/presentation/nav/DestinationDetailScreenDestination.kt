@@ -10,6 +10,7 @@ import com.ramcosta.composedestinations.navigation.DependenciesContainerBuilder
 import com.ramcosta.composedestinations.navigation.DestinationDependenciesContainer
 import com.ramcosta.composedestinations.scope.DestinationScope
 import com.ramcosta.composedestinations.spec.Direction
+import com.submission.submissionjetpackcompose.presentation.view.detail.DetailScreen
 
 object DestinationDetailScreenDestination : TypedDestination<DestinationDetailScreenDestination.NavArgs> {
          
@@ -22,7 +23,7 @@ object DestinationDetailScreenDestination : TypedDestination<DestinationDetailSc
         }
     }
     
-    override val routeId = "character_detail_screen"
+    override val routeId = "destination_detail_screen"
 
     override val route = "$routeId?id={id}"
     
@@ -41,10 +42,10 @@ object DestinationDetailScreenDestination : TypedDestination<DestinationDetailSc
 		dependencyContainer.apply { dependenciesContainerBuilder() }
 
 		val (id) = navArgs
-		/*DetailScreen(
+		DetailScreen(
 			id = id, 
 			navigator = dependencyContainer.require()
-		)*/
+		)
     }
                     
 	override fun argsFrom(navBackStackEntry: NavBackStackEntry): NavArgs {

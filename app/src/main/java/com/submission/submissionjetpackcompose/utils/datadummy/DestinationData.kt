@@ -2,6 +2,7 @@ package com.submission.submissionjetpackcompose.utils.datadummy
 
 import com.submission.submissionjetpackcompose.R
 import com.submission.submissionjetpackcompose.data.model.DestinationEntity
+import com.submission.submissionjetpackcompose.data.model.Profile
 import com.submission.submissionjetpackcompose.domain.model.DestinationDomain
 import javax.inject.Inject
 
@@ -123,6 +124,16 @@ class DestinationData @Inject constructor() {
         )
 
         return catalogueDestination
+    }
+
+    fun generateAboutData() : Profile{
+        return Profile(
+                "Muhammad Ali Mukti",
+                "aliemuhammad847@gmail.com",
+                "082112367425",
+                R.drawable.ic_anambas
+            )
+
     }
 
 }

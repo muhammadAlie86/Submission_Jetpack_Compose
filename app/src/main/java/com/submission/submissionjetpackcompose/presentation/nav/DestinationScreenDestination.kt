@@ -11,7 +11,7 @@ object DestinationScreenDestination : DirectionDestination {
          
     operator fun invoke() = this
     
-    override val routeId = "cafe_screen"
+    override val routeId = "destination_screen"
 
     override val route = routeId
     

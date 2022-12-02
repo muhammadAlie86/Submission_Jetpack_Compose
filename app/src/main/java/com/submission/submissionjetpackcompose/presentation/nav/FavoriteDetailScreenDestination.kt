@@ -23,7 +23,7 @@ object FavoriteDetailScreenDestination : TypedDestination<FavoriteDetailScreenDe
         }
     }
     
-    override val routeId = "character_detail_screen"
+    override val routeId = "favorite_detail_screen"
 
     override val route = "$routeId?id={id}"
     

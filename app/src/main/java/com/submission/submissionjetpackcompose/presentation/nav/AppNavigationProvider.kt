@@ -8,8 +8,8 @@ class AppNavigationProvider constructor(
     private val navController: NavController
 ) : NavigationProvider {
 
-    override fun openCafeDetail(favoriteId: Int) {
-        navController.navigateTo(DestinationDetailScreenDestination(favoriteId))
+    override fun openDestinationDetail(id: Int) {
+        navController.navigateTo(DestinationDetailScreenDestination(id))
     }
 
     override fun openFavoriteDetail(favoriteId: Int) {

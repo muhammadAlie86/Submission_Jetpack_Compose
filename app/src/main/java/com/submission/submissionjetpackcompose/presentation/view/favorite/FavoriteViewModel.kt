@@ -8,4 +8,5 @@ import javax.inject.Inject
 class FavoriteViewModel @Inject constructor(
 
 ) : ViewModel() {
+
 }

@@ -1,9 +1,6 @@
 package com.submission.submissionjetpackcompose.presentation.view.list
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -12,10 +9,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.submission.submissionjetpackcompose.R
 import com.submission.submissionjetpackcompose.domain.model.DestinationDomain
-import com.submission.submissionjetpackcompose.presentation.component.DestinationToolbar
-import com.submission.submissionjetpackcompose.presentation.component.EmptyView
-import com.submission.submissionjetpackcompose.presentation.component.ErrorView
-import com.submission.submissionjetpackcompose.presentation.component.LoadingView
+import com.submission.submissionjetpackcompose.presentation.component.*
 import com.submission.submissionjetpackcompose.presentation.view.favorite.FavoriteBottomSheetContent
 import com.submission.submissionjetpackcompose.ui.theme.CafeColors
 import com.submission.submissionjetpackcompose.utils.base.cast
@@ -75,7 +69,7 @@ private fun DestinationPage(
             viewModel = viewModel,
             paddingValues = PaddingValues(5.dp),
             viewState = uiState.cast<BaseViewState.Data<DestinationState>>().value,
-            selectItem = { id -> navigator.openCafeDetail(id) }
+            selectItem = { id -> navigator.openDestinationDetail(id) }
         )
         is BaseViewState.Empty -> EmptyView(modifier = modifier)
         is BaseViewState.Error -> ErrorView(
@@ -83,7 +77,7 @@ private fun DestinationPage(
         ) {
             viewModel.onTriggerEvent(DestinationEvent.LoadDestination)
         }
-        is BaseViewState.Loading -> LoadingView()
+        is BaseViewState.Loading -> DialogBoxLoadingView()
         else -> {}
     }
 
@@ -91,7 +85,6 @@ private fun DestinationPage(
         viewModel.onTriggerEvent(DestinationEvent.LoadDestination)
     })
 }
-
 
 
 @OptIn(ExperimentalMaterialApi::class)
