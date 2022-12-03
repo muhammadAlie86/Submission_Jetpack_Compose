@@ -24,13 +24,14 @@ import com.submission.submissionjetpackcompose.ui.theme.CafeColors
 import com.submission.submissionjetpackcompose.utils.base.cast
 import com.submission.submissionjetpackcompose.utils.mvi.BaseViewState
 import com.submission.submissionjetpackcompose.utils.nav.NavigationProvider
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun FavoriteScreen(
     modifier: Modifier = Modifier,
-    viewModel: DestinationViewModel = hiltViewModel(),
+    viewModel: FavoriteViewModel = hiltViewModel(),
     bottomSheetState: ModalBottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden),
     navigator: NavigationProvider
 ) {
@@ -38,9 +39,9 @@ fun FavoriteScreen(
     val uiState by viewModel.uiState.collectAsState()
 
     val coroutineScope = rememberCoroutineScope()
-    val selectedFavorite = remember { mutableStateOf(DestinationDomain(0,"",0F,"","",1)) }
+    val selectedFavorite = remember { mutableStateOf(DestinationDomain()) }
 
-    DestinationsBody(
+    FavoritesBody(
         modifier, bottomSheetState,
         sheetContent = {
             FavoriteBottomSheetContent(
@@ -52,7 +53,7 @@ fun FavoriteScreen(
                 },
                 onApprove = {
                     coroutineScope.launch {
-                        //viewModel.onTriggerEvent(CharactersEvent.DeleteFavorite(selectedFavorite.value.id.orZero()))
+                        viewModel.onTriggerEvent(FavoriteEvent.DeleteFavorite(selectedFavorite.value.id))
                         bottomSheetState.hide()
                     }
                 }
@@ -60,38 +61,60 @@ fun FavoriteScreen(
         }
     ) { padding ->
         Column {
-            DestinationPage(uiState, viewModel, padding, navigator, modifier)
+            FavoritesPage(
+                coroutineScope,
+                bottomSheetState,
+                uiState,
+                viewModel,
+                navigator,
+                modifier,
+                selectedFavorite
+            )
         }
     }
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-private fun DestinationPage(
+private fun FavoritesPage(
+    coroutineScope: CoroutineScope = rememberCoroutineScope(),
+    bottomSheetState: ModalBottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden),
     uiState: BaseViewState<*>,
-    viewModel: DestinationViewModel,
-    paddings: PaddingValues,
+    viewModel: FavoriteViewModel,
     navigator: NavigationProvider,
-    modifier: Modifier
+    modifier: Modifier,
+    selectedFavorite: MutableState<DestinationDomain>
 ) {
     when (uiState) {
-        is BaseViewState.Data -> DestinationContent(
-            viewModel = viewModel,
-            paddingValues = PaddingValues(5.dp),
-            viewState = uiState.cast<BaseViewState.Data<DestinationState>>().value,
-            selectItem = { id -> navigator.openDestinationDetail(id) }
-        )
+        is BaseViewState.Data -> uiState.cast<BaseViewState.Data<FavoriteState>>().value.destinationDomain?.let {
+            FavoriteContent(
+                favors = it,
+                selectedFavorite = selectedFavorite,
+                onDetailItem = { id -> navigator.openFavoriteDetail(id) },
+                onDeleteItem = {
+                    coroutineScope.launch {
+                        if (bottomSheetState.isVisible) {
+                            bottomSheetState.hide()
+                        } else {
+                            bottomSheetState.show()
+                        }
+                    }
+                }
+            )
+        }
         is BaseViewState.Empty -> EmptyView(modifier = modifier)
         is BaseViewState.Error -> ErrorView(
             e = uiState.cast<BaseViewState.Error>().message
         ) {
-            viewModel.onTriggerEvent(DestinationEvent.LoadDestination)
+            viewModel.onTriggerEvent(FavoriteEvent.LoadFavorites)
         }
         is BaseViewState.Loading -> DialogBoxLoadingView()
-        else -> {}
+        else -> {
+            DialogBoxLoadingView()}
     }
 
     LaunchedEffect(key1 = viewModel, block = {
-        viewModel.onTriggerEvent(DestinationEvent.LoadDestination)
+        viewModel.onTriggerEvent(FavoriteEvent.LoadFavorites)
     })
 }
 
@@ -99,7 +122,7 @@ private fun DestinationPage(
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-private fun DestinationsBody(
+private fun FavoritesBody(
     modifier: Modifier = Modifier,
     bottomSheetState: ModalBottomSheetState,
     sheetContent: @Composable ColumnScope.() -> Unit,
@@ -114,7 +137,7 @@ private fun DestinationsBody(
         sheetShape = RectangleShape,
         content = {
             Scaffold(
-                topBar = { DestinationToolbar(R.string.destination, elevation = 0.dp) },
+                topBar = { DestinationToolbar(R.string.favorite, elevation = 0.dp) },
                 content = { pageContent.invoke(it) }
             )
         }

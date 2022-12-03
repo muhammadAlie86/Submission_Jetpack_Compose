@@ -43,7 +43,7 @@ fun DestinationScreen(
                 },
                 onApprove = {
                     coroutineScope.launch {
-                        //viewModel.onTriggerEvent(CharactersEvent.DeleteFavorite(selectedFavorite.value.id.orZero()))
+                        viewModel.onTriggerEvent(DestinationEvent.DeleteFavorite(selectedFavorite.value.id))
                         bottomSheetState.hide()
                     }
                 }
@@ -77,7 +77,11 @@ private fun DestinationPage(
         ) {
             viewModel.onTriggerEvent(DestinationEvent.LoadDestination)
         }
-        is BaseViewState.Loading -> DialogBoxLoadingView()
+        is BaseViewState.Loading -> repeat(5) {
+            ShimmerAnimation {
+                ShimmerListItem(brush = it)
+            }
+        }
         else -> {}
     }
 

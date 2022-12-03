@@ -2,9 +2,9 @@ package com.submission.submissionjetpackcompose.di
 
 import android.content.Context
 import androidx.room.Room
+import com.submission.submissionjetpackcompose.BuildConfig
 import com.submission.submissionjetpackcompose.data.room.dao.DestinationFavoriteDao
 import com.submission.submissionjetpackcompose.data.room.db.DestinationDatabase
-import com.submission.submissionjetpackcompose.utils.constanta.Constants.DB_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,6 +14,8 @@ import javax.inject.Named
 import javax.inject.Singleton
 
 
+private const val DB_NAME = "db_name"
+
 @Module
 @InstallIn(SingletonComponent::class)
 class DatabaseModule {
@@ -21,7 +23,7 @@ class DatabaseModule {
     @Singleton
     @Named(value = DB_NAME)
     fun provideDatabaseName(): String {
-        return DB_NAME
+        return BuildConfig.DB_NAME
     }
 
     @Provides

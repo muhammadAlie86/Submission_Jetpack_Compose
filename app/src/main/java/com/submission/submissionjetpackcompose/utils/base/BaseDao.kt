@@ -2,6 +2,7 @@ package com.submission.submissionjetpackcompose.utils.base
 
 import androidx.room.*
 
+
 @Dao
 interface BaseDao<T> {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

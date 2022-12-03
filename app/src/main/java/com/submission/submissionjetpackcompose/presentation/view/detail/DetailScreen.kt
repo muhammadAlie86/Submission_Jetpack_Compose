@@ -8,10 +8,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.submission.submissionjetpackcompose.R
-import com.submission.submissionjetpackcompose.presentation.component.DestinationToolbarWithNavIcon
-import com.submission.submissionjetpackcompose.presentation.component.DialogBoxLoadingView
-import com.submission.submissionjetpackcompose.presentation.component.EmptyView
-import com.submission.submissionjetpackcompose.presentation.component.ErrorView
+import com.submission.submissionjetpackcompose.presentation.component.*
 import com.submission.submissionjetpackcompose.utils.base.cast
 import com.submission.submissionjetpackcompose.utils.mvi.BaseViewState
 import com.submission.submissionjetpackcompose.utils.nav.NavigationProvider
@@ -42,7 +39,11 @@ fun DetailScreen(
                         viewModel.onTriggerEvent(DestinationDetailEvent.LoadDetail(id))
                     }
                 )
-                is BaseViewState.Loading -> DialogBoxLoadingView()
+                is BaseViewState.Loading -> repeat(5) {
+                    ShimmerAnimation {
+                        ShimmerDetailItem(brush = it)
+                    }
+                }
                 else -> {}
             }
         }
