@@ -7,13 +7,13 @@ object NavGraphs {
 
     val root = NavGraph(
         route = "root",
-        startRoute = HomeScreenDestination,
+        startRoute = SplashScreenDestination,
         destinations = listOf(
-			DestinationScreenDestination,
+			DestinationScreen,
 			HomeScreenDestination,
 			DestinationDetailScreenDestination,
 			AboutScreenDestination,
-			FavoriteDetailScreenDestination
+            SplashScreenDestination
         )
     )
 }

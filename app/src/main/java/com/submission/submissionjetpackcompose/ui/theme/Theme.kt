@@ -38,14 +38,11 @@ private val LightColorPalette = lightColors(
     onSurface = White
 )
 
-val CafeColors: Colors
-    @Composable get() = MaterialTheme.colors
-
-val CafeShapes: Shapes
-    @Composable get() = MaterialTheme.shapes
-
-val CafeTypography: Typography
+val DestinationTypography: Typography
     @Composable get() = MaterialTheme.typography
+
+val DestinationColors: Colors
+    @Composable get() = MaterialTheme.colors
 
 
 @Composable

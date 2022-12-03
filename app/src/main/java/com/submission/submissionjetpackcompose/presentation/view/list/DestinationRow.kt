@@ -4,27 +4,20 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment
+import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.submission.submissionjetpackcompose.domain.model.DestinationDomain
-import com.submission.submissionjetpackcompose.presentation.component.FavoriteButtonDestination
 import com.submission.submissionjetpackcompose.presentation.component.RatingBar
-import com.submission.submissionjetpackcompose.ui.theme.CafeTypography
-import com.submission.submissionjetpackcompose.ui.theme.Gray500
-import com.submission.submissionjetpackcompose.ui.theme.Red
+import com.submission.submissionjetpackcompose.ui.theme.DestinationTypography
 import com.submission.submissionjetpackcompose.ui.theme.White
-import com.submission.submissionjetpackcompose.utils.mapper.toEntity
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -34,7 +27,6 @@ fun DestinationRow(
     onDetailClick: () -> Unit = {}
 ) {
 
-    var isFavorite by rememberSaveable(dto) { mutableStateOf(dto.isFavorite) }
     Card(
         onClick = onDetailClick,
         modifier = Modifier
@@ -68,34 +60,15 @@ fun DestinationRow(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(bottom = 2.dp, start = 16.dp),
-                    style = CafeTypography.body1
+                    style = DestinationTypography.h6
                 )
                 RatingBar(
                     modifier = Modifier
                         .padding(start = 10.dp),
-                    rating = dto.rate)
+                    rating = dto.rate
+                )
 
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End,
-                    verticalAlignment = Alignment.Bottom,
-                ) {
-                    IconButton(onClick = {
-                        isFavorite = !isFavorite
-                        dto.isFavorite = isFavorite
-                        viewModel.onTriggerEvent(DestinationEvent.AddOrRemoveFavorite(dto))
-                    }) {
-                        val tintColor = if (isFavorite) Red else Gray500
-                        Icon(
-                            painter = rememberVectorPainter(Icons.Default.Favorite),
-                            contentDescription = null,
-                            tint = tintColor
-                        )
-                    }
-                }
             }
         }
-
     }
 }

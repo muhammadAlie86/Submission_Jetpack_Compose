@@ -15,11 +15,13 @@ fun ShimmerAbout(brush: Brush) {
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
         ) {
         Spacer(
             modifier = Modifier
-                .height(300.dp)
-                .width(400.dp)
+                .height(100.dp)
+                .width(100.dp)
                 .background(brush = brush)
         )
 
@@ -42,7 +44,7 @@ fun ShimmerAbout(brush: Brush) {
             Spacer(
                 modifier = Modifier
                     .height(20.dp)
-                    .width(100.dp)
+                    .width(200.dp)
                     .background(brush = brush)
             )
 
@@ -70,7 +72,7 @@ fun ShimmerAbout(brush: Brush) {
             Spacer(
                 modifier = Modifier
                     .height(20.dp)
-                    .width(100.dp)
+                    .width(200.dp)
                     .background(brush = brush)
             )
 
@@ -98,7 +100,7 @@ fun ShimmerAbout(brush: Brush) {
             Spacer(
                 modifier = Modifier
                     .height(20.dp)
-                    .width(100.dp)
+                    .width(200.dp)
                     .background(brush = brush)
             )
 

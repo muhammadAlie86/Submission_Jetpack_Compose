@@ -14,7 +14,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.submission.submissionjetpackcompose.domain.model.DestinationDomain
-import com.submission.submissionjetpackcompose.presentation.component.FavoriteButtonDetail
 import com.submission.submissionjetpackcompose.presentation.component.RatingBar
 import com.submission.submissionjetpackcompose.ui.theme.*
 import com.submission.submissionjetpackcompose.utils.nav.NavigationProvider
@@ -24,7 +23,7 @@ fun DetailDestinationView(viewModel: DetailViewModel,dto : DestinationDomain, na
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .background(CafeColors.cardBackgroundColor),
+            .background(DestinationColors.cardBackgroundColor),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -57,18 +56,17 @@ fun DetailDestinationView(viewModel: DetailViewModel,dto : DestinationDomain, na
                             text = dto.name,
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis,
-                            style = CafeTypography.h5
+                            style = DestinationTypography.h5
                         )
-                        FavoriteButtonDetail(viewModel, dto)
                     }
                     RatingBar( rating = dto.rate)
                     Text(
                         text = dto.location,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis,
-                        style = CafeTypography.h6
+                        style = DestinationTypography.h6
                     )
-                    Text(text = dto.description, style = CafeTypography.subtitle1)
+                    Text(text = dto.description, style = DestinationTypography.subtitle1)
                 }
 
             }
@@ -82,7 +80,7 @@ fun DetailDestinationView(viewModel: DetailViewModel,dto : DestinationDomain, na
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(1.dp),
-                color = CafeColors.dividerColor
+                color = DestinationColors.dividerColor
             )
         }
     }

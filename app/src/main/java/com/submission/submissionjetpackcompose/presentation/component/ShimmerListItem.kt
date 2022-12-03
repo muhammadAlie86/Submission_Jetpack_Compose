@@ -21,7 +21,7 @@ fun ShimmerListItem(brush: Brush) {
             .padding(10.dp)
             .shadow(
                 elevation = 10.dp,
-                shape = RoundedCornerShape(20.dp),
+                shape = RoundedCornerShape(10.dp),
             )
             .clip(RoundedCornerShape(20.dp))
             .fillMaxWidth()
@@ -29,7 +29,7 @@ fun ShimmerListItem(brush: Brush) {
     ) {
         Row(
             modifier = Modifier
-                .padding(start = 20.dp, top = 15.dp)
+                .padding(start = 20.dp, top = 15.dp, bottom = 20.dp)
         ) {
             Spacer(
                 modifier = Modifier
@@ -37,7 +37,6 @@ fun ShimmerListItem(brush: Brush) {
                     .width(100.dp)
                     .background(brush = brush)
             )
-
 
             Column(
                 verticalArrangement = Arrangement.spacedBy(5.dp),
@@ -62,19 +61,6 @@ fun ShimmerListItem(brush: Brush) {
                         .background(brush = brush)
                 )
 
-                Row(
-                    modifier = Modifier
-                        .padding(start = 200.dp,top = 5.dp),
-                    horizontalArrangement = Arrangement.End,
-                    verticalAlignment = Alignment.Bottom,
-                ) {
-                    Spacer(
-                        modifier = Modifier
-                            .height(20.dp)
-                            .width(20.dp)
-                            .background(brush = brush)
-                    )
-                }
             }
 
         }

@@ -1,3 +1,5 @@
+@file:Suppress("EqualsBetweenInconvertibleTypes")
+
 package com.submission.submissionjetpackcompose.presentation.component
 
 import androidx.compose.foundation.layout.Row

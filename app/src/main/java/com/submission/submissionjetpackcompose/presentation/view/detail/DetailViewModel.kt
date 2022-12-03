@@ -1,10 +1,9 @@
 package com.submission.submissionjetpackcompose.presentation.view.detail
 
 import com.submission.submissionjetpackcompose.data.repository.DataDummyRepository
-import com.submission.submissionjetpackcompose.presentation.view.list.DestinationEvent
-import com.submission.submissionjetpackcompose.utils.mapper.toDomain
+import com.submission.submissionjetpackcompose.domain.mapper.toDomain
 import com.submission.submissionjetpackcompose.utils.mvi.BaseViewState
-import com.submission.submissionjetpackcompose.utils.mvi.MvviViewModel
+import com.submission.submissionjetpackcompose.utils.mvi.MviViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import javax.inject.Inject
@@ -12,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DetailViewModel  @Inject constructor(
     private val dataDummyRepository: DataDummyRepository,
-) : MvviViewModel<BaseViewState<DestinationViewState>, DestinationDetailEvent>() {
+) : MviViewModel<BaseViewState<DestinationViewState>, DestinationDetailEvent>() {
 
     override fun onTriggerEvent(eventType: DestinationDetailEvent) {
         when (eventType) {

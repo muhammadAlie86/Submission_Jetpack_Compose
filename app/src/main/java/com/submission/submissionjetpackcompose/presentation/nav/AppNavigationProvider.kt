@@ -12,9 +12,10 @@ class AppNavigationProvider constructor(
         navController.navigateTo(DestinationDetailScreenDestination(id))
     }
 
-    override fun openFavoriteDetail(favoriteId: Int) {
-        navController.navigateTo(FavoriteDetailScreenDestination(favoriteId))
+    override fun openHome() {
+        navController.navigateTo(HomeScreenDestination)
     }
+
 
     override fun openAbout() {
         navController.navigateTo(AboutScreenDestination())

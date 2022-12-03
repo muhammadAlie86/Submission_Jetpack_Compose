@@ -1,33 +1,46 @@
 package com.submission.submissionjetpackcompose.utils.mvi
 
-import com.submission.submissionjetpackcompose.utils.mvvm.MvvmViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
-abstract class MviViewModel<STATE : BaseViewState<*>, EVENT> : MvvmViewModel() {
+abstract class MviViewModel<STATE : BaseViewState<*>, EVENT> : ViewModel() {
 
     private val _uiState = MutableStateFlow<BaseViewState<*>>(BaseViewState.Initiate)
     val uiState = _uiState.asStateFlow()
 
     abstract fun onTriggerEvent(eventType: EVENT)
 
+    private val handler = CoroutineExceptionHandler { _, exception ->
+        handleEmpty(exception)
+    }
+   fun safeLaunch(block: suspend CoroutineScope.() -> Unit) {
+        viewModelScope.launch(handler, block = block)
+    }
+
     protected fun setState(state: STATE) = safeLaunch {
         _uiState.emit(state)
     }
 
-    override fun startLoading() {
-        super.startLoading()
+    fun startLoading() {
         _uiState.value = BaseViewState.Loading
     }
 
-    override fun handleEmpty(exception: Throwable) {
-        super.handleEmpty(exception)
+    fun handleEmpty(exception: Throwable) {
         _uiState.value = BaseViewState.Empty(exception)
     }
 
-    override fun handleError(message: String) {
-        super.handleError(message)
+    fun handleError(message: String) {
         _uiState.value = BaseViewState.Error(message)
 
     }
+}
+
+inline fun <reified T : Any> Any.cast(): T {
+    return this as T
 }

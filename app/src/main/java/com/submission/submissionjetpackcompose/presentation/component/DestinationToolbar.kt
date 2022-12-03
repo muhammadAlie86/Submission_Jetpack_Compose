@@ -17,9 +17,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.submission.submissionjetpackcompose.presentation.nav.Destination
-import com.submission.submissionjetpackcompose.ui.theme.CafeColors
-import com.submission.submissionjetpackcompose.ui.theme.CafeTypography
+import com.submission.submissionjetpackcompose.ui.theme.DestinationColors
+import com.submission.submissionjetpackcompose.ui.theme.DestinationTypography
 import com.submission.submissionjetpackcompose.ui.theme.navigationBackIconColor
 
 
@@ -34,10 +33,10 @@ fun DestinationToolbar(
                 stringResource(titleResId),
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth(),
-                style = CafeTypography.h2
+                style = DestinationTypography.h2
             )
         },
-        backgroundColor = CafeColors.primary,
+        backgroundColor = DestinationColors.primary,
         modifier = Modifier.fillMaxWidth(),
         elevation = elevation
     )
@@ -54,20 +53,20 @@ fun DestinationToolbarWithNavIcon(
                 stringResource(titleResId),
                 textAlign = TextAlign.Start,
                 modifier = Modifier.fillMaxWidth(),
-                style = CafeTypography.h2
+                style = DestinationTypography.h2
             )
         },
         navigationIcon = {
             Icon(
                 rememberVectorPainter(Icons.Filled.ArrowBack),
                 contentDescription = null,
-                tint =  CafeColors.navigationBackIconColor,
+                tint =  DestinationColors.navigationBackIconColor,
                 modifier = Modifier
                     .padding(8.dp)
                     .clickable { pressOnBack.invoke() }
             )
         },
-        backgroundColor =  CafeColors.primary,
+        backgroundColor =  DestinationColors.primary,
         modifier = Modifier.fillMaxWidth()
     )
 }

@@ -9,8 +9,8 @@ import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.submission.submissionjetpackcompose.R
 import com.submission.submissionjetpackcompose.presentation.component.*
-import com.submission.submissionjetpackcompose.utils.base.cast
 import com.submission.submissionjetpackcompose.utils.mvi.BaseViewState
+import com.submission.submissionjetpackcompose.utils.mvi.cast
 import com.submission.submissionjetpackcompose.utils.nav.NavigationProvider
 
 @Composable

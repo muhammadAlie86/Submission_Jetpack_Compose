@@ -6,12 +6,14 @@ import com.ramcosta.composedestinations.navigation.DependenciesContainerBuilder
 import com.ramcosta.composedestinations.navigation.DestinationDependenciesContainer
 import com.ramcosta.composedestinations.scope.DestinationScope
 import com.submission.submissionjetpackcompose.presentation.view.about.AboutScreen
+import com.submission.submissionjetpackcompose.presentation.view.list.DestinationScreen
+import com.submission.submissionjetpackcompose.presentation.view.splash.SplashScreen
 
-object DestinationScreenDestination : DirectionDestination {
+object SplashScreenDestination : DirectionDestination {
          
     operator fun invoke() = this
     
-    override val routeId = "destination_screen"
+    override val routeId = "splash_screen"
 
     override val route = routeId
     
@@ -22,7 +24,7 @@ object DestinationScreenDestination : DirectionDestination {
 		val dependencyContainer = remember { DestinationDependenciesContainer(this) }
 		dependencyContainer.apply { dependenciesContainerBuilder() }
 
-		AboutScreen(
+		SplashScreen(
 			navigator = dependencyContainer.require()
 		)
     }

@@ -17,22 +17,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ramcosta.composedestinations.annotation.Destination
 import com.submission.submissionjetpackcompose.presentation.view.about.AboutScreen
-import com.submission.submissionjetpackcompose.presentation.view.favorite.FavoriteScreen
 import com.submission.submissionjetpackcompose.presentation.view.list.DestinationScreen
-import com.submission.submissionjetpackcompose.ui.theme.CafeColors
+import com.submission.submissionjetpackcompose.ui.theme.DestinationColors
 import com.submission.submissionjetpackcompose.ui.theme.selectedBottomItemColor
 import com.submission.submissionjetpackcompose.ui.theme.unselectedBottomItemColor
 import com.submission.submissionjetpackcompose.utils.nav.NavigationProvider
 
-@OptIn(ExperimentalMaterialApi::class)
-@Destination(start = true)
 @Composable
 fun HomeScreen(navigator: NavigationProvider) {
     val scaffoldState = rememberScaffoldState()
     val (currentBottomTab, setCurrentBottomTab) = rememberSaveable {
         mutableStateOf(BottomBarHomeItem.DESTINATION)
     }
-    val bottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
 
     Crossfade(currentBottomTab) { bottomTab ->
         Scaffold(
@@ -44,17 +40,11 @@ fun HomeScreen(navigator: NavigationProvider) {
                     BottomBarHomeItem.DESTINATION-> DestinationScreen(
                         modifier = modifier,
                         navigator = navigator,
-                        bottomSheetState = bottomSheetState
                     )
                     BottomBarHomeItem.ABOUT -> AboutScreen(
                         modifier = modifier,
                         navigator = navigator
                     )
-                    BottomBarHomeItem.FAVORITE -> FavoriteScreen(
-                        modifier = modifier,
-                        navigator = navigator
-                    )
-
                 }
             }
         )
@@ -70,7 +60,7 @@ private fun HomeBottomNavigation(
     val pages = BottomBarHomeItem.values()
 
     BottomNavigation(
-        backgroundColor = CafeColors.primary,
+        backgroundColor = DestinationColors.primary,
         modifier = Modifier
             .fillMaxWidth()
             .heightIn(bottomBarHeight)

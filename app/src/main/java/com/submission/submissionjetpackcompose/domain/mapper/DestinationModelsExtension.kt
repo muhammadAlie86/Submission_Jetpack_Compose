@@ -1,4 +1,4 @@
-package com.submission.submissionjetpackcompose.utils.mapper
+package com.submission.submissionjetpackcompose.domain.mapper
 
 import com.submission.submissionjetpackcompose.data.model.DestinationEntity
 import com.submission.submissionjetpackcompose.domain.model.DestinationDomain

@@ -20,9 +20,5 @@ enum class BottomBarHomeItem(
     ABOUT(
         title = R.string.about,
         icon = Icons.Filled.AccountCircle
-    ),
-    FAVORITE(
-        title = R.string.favorite,
-        icon = Icons.Filled.Favorite
-    ),
+    )
 }

@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.submission.submissionjetpackcompose.R
 import com.submission.submissionjetpackcompose.presentation.component.*
-import com.submission.submissionjetpackcompose.utils.base.cast
 import com.submission.submissionjetpackcompose.utils.mvi.BaseViewState
+import com.submission.submissionjetpackcompose.utils.mvi.cast
 import com.submission.submissionjetpackcompose.utils.nav.NavigationProvider
 
 @Composable
@@ -58,7 +58,7 @@ private fun AboutBody(
 ) {
     Scaffold(
         topBar = {
-             R.string.about
+             DestinationToolbar(titleResId = R.string.about)
         },
         content = { content.invoke(it) }
     )

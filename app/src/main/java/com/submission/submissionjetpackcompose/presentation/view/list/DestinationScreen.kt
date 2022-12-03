@@ -1,119 +1,82 @@
 package com.submission.submissionjetpackcompose.presentation.view.list
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyItemScope
+import androidx.compose.foundation.lazy.grid.LazyGridItemScope
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Scaffold
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.submission.submissionjetpackcompose.R
-import com.submission.submissionjetpackcompose.domain.model.DestinationDomain
 import com.submission.submissionjetpackcompose.presentation.component.*
-import com.submission.submissionjetpackcompose.presentation.view.favorite.FavoriteBottomSheetContent
-import com.submission.submissionjetpackcompose.ui.theme.CafeColors
-import com.submission.submissionjetpackcompose.utils.base.cast
 import com.submission.submissionjetpackcompose.utils.mvi.BaseViewState
+import com.submission.submissionjetpackcompose.utils.mvi.cast
 import com.submission.submissionjetpackcompose.utils.nav.NavigationProvider
-import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun DestinationScreen(
     modifier: Modifier = Modifier,
     viewModel: DestinationViewModel = hiltViewModel(),
-    bottomSheetState: ModalBottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden),
     navigator: NavigationProvider
 ) {
 
     val uiState by viewModel.uiState.collectAsState()
 
-    val coroutineScope = rememberCoroutineScope()
-    val selectedFavorite = remember { mutableStateOf(DestinationDomain()) }
 
-    DestinationsBody(
-        modifier, bottomSheetState,
-        sheetContent = {
-            FavoriteBottomSheetContent(
-                character = selectedFavorite.value,
-                onCancel = {
-                    coroutineScope.launch {
-                        bottomSheetState.hide()
-                    }
-                },
-                onApprove = {
-                    coroutineScope.launch {
-                        viewModel.onTriggerEvent(DestinationEvent.DeleteFavorite(selectedFavorite.value.id))
-                        bottomSheetState.hide()
+    DestinationBody {
+
+        when (uiState) {
+            is BaseViewState.Data -> DestinationContent(
+                viewModel = viewModel,
+                paddingValues = PaddingValues(5.dp),
+                viewState = uiState.cast<BaseViewState.Data<DestinationState>>().value,
+                selectItem = { id -> navigator.openDestinationDetail(id) }
+            )
+            is BaseViewState.Empty -> EmptyView(modifier = modifier)
+            is BaseViewState.Error -> ErrorView(
+                e = uiState.cast<BaseViewState.Error>().message
+            ) {
+                viewModel.onTriggerEvent(DestinationEvent.LoadDestination)
+            }
+            is BaseViewState.Loading -> {
+                LazyColumn {
+                    item {
+                        repeat(5) {
+                            ShimmerAnimation {
+                                ShimmerListItem(brush = it)
+                            }
+                        }
                     }
                 }
-            )
-        }
-    ) { padding ->
-        Column {
-            DestinationPage(uiState, viewModel, padding, navigator, modifier)
-        }
-    }
-}
-
-@Composable
-private fun DestinationPage(
-    uiState: BaseViewState<*>,
-    viewModel: DestinationViewModel,
-    paddings: PaddingValues,
-    navigator: NavigationProvider,
-    modifier: Modifier
-) {
-    when (uiState) {
-        is BaseViewState.Data -> DestinationContent(
-            viewModel = viewModel,
-            paddingValues = PaddingValues(5.dp),
-            viewState = uiState.cast<BaseViewState.Data<DestinationState>>().value,
-            selectItem = { id -> navigator.openDestinationDetail(id) }
-        )
-        is BaseViewState.Empty -> EmptyView(modifier = modifier)
-        is BaseViewState.Error -> ErrorView(
-            e = uiState.cast<BaseViewState.Error>().message
-        ) {
-            viewModel.onTriggerEvent(DestinationEvent.LoadDestination)
-        }
-        is BaseViewState.Loading -> repeat(5) {
-            ShimmerAnimation {
-                ShimmerListItem(brush = it)
             }
+            else -> {}
         }
-        else -> {}
+
+        LaunchedEffect(key1 = viewModel, block = {
+            viewModel.onTriggerEvent(DestinationEvent.LoadDestination)
+        })
+
     }
 
-    LaunchedEffect(key1 = viewModel, block = {
-        viewModel.onTriggerEvent(DestinationEvent.LoadDestination)
-    })
 }
 
 
-@OptIn(ExperimentalMaterialApi::class)
+
 @Composable
-private fun DestinationsBody(
-    modifier: Modifier = Modifier,
-    bottomSheetState: ModalBottomSheetState,
-    sheetContent: @Composable ColumnScope.() -> Unit,
+private fun DestinationBody(
     content: @Composable (PaddingValues) -> Unit
 ) {
-    ModalBottomSheetLayout(
-        sheetContent = sheetContent,
-        modifier = modifier
-            .fillMaxSize(),
-        sheetState = bottomSheetState,
-        sheetContentColor = CafeColors.background,
-        sheetShape = RectangleShape,
-        content = {
-            Scaffold(
-                topBar = { DestinationToolbar(R.string.destination, elevation = 0.dp) },
-                content = { content.invoke(it) }
-            )
-        }
+    Scaffold(
+        topBar = {
+            DestinationToolbar(titleResId = R.string.destination)
+        },
+        content = { content.invoke(it) }
     )
 }

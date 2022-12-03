@@ -131,7 +131,7 @@ class DestinationData @Inject constructor() {
                 "Muhammad Ali Mukti",
                 "aliemuhammad847@gmail.com",
                 "082112367425",
-                R.drawable.ic_anambas
+                R.drawable.ic_profile
             )
 
     }

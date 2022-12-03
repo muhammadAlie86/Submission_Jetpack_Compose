@@ -10,14 +10,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.submission.submissionjetpackcompose.data.model.Profile
-import com.submission.submissionjetpackcompose.presentation.component.FavoriteButtonDetail
-import com.submission.submissionjetpackcompose.ui.theme.CafeColors
-import com.submission.submissionjetpackcompose.ui.theme.CafeTypography
-import com.submission.submissionjetpackcompose.ui.theme.cardBackgroundColor
+import com.submission.submissionjetpackcompose.ui.theme.DestinationTypography
 import com.submission.submissionjetpackcompose.ui.theme.dividerColor
 import com.submission.submissionjetpackcompose.utils.nav.NavigationProvider
 
@@ -26,7 +25,7 @@ fun AboutView(viewModel: AboutViewModel,data : Profile, navigator: NavigationPro
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .background(CafeColors.cardBackgroundColor),
+            .background(Color.White),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -34,74 +33,83 @@ fun AboutView(viewModel: AboutViewModel,data : Profile, navigator: NavigationPro
                 .fillMaxSize()
                 .padding(15.dp),
         ) {
-                Image(
-                    painter = painterResource(data.imgProfile),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .fillMaxWidth()
-                        .clip(CircleShape)
-                )
+            Image(
+                painter = painterResource(data.imgProfile),
+                contentDescription = null,
+                modifier = Modifier
+                    .padding(8.dp)
+                    .fillMaxWidth()
+                    .clip(CircleShape)
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+
                 Text(
+                    modifier = Modifier.weight(1f),
+                    text = "Nama :",
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    style = DestinationTypography.subtitle1
+                )
+
+                Text(
+                    modifier = Modifier.weight(1f),
                     text = data.name,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
-                    style = CafeTypography.subtitle1
+                    style = DestinationTypography.subtitle1
                 )
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    //CharacterStatusView(dto)
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
 
-                    Text(
-                        text = "Email",
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                        style = CafeTypography.subtitle1
-                    )
-                    Text(
-                        text = ":",
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                        style = CafeTypography.subtitle1
-                    )
-                    Text(
-                        text = data.email,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                        style = CafeTypography.subtitle1
-                    )
-                }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    //CharacterStatusView(dto)
+                Text(
+                    modifier = Modifier.weight(1f),
+                    text = "Email :",
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    style = DestinationTypography.subtitle1
+                )
 
-                    Text(
-                        text = "No Telepon",
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                        style = CafeTypography.subtitle1
-                    )
-                    Text(
-                        text = ":",
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                        style = CafeTypography.subtitle1
-                    )
-                    Text(
-                        text = data.phone,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                        style = CafeTypography.subtitle1
-                    )
-                }
+                Text(
+                    modifier = Modifier.weight(1f),
+                    text = data.email,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    style = DestinationTypography.subtitle1
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+
+                Text(
+                    modifier = Modifier.weight(1f),
+                    text = "No Telepon :",
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    style = DestinationTypography.subtitle1
+                )
+
+                Text(
+                    modifier = Modifier.weight(1f),
+                    text = data.phone,
+                    maxLines = 2,
+                    overflow = TextOverflow.Ellipsis,
+                    style = DestinationTypography.subtitle1
+                )
+            }
 
             Spacer(
                 modifier = Modifier
@@ -113,7 +121,7 @@ fun AboutView(viewModel: AboutViewModel,data : Profile, navigator: NavigationPro
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(1.dp),
-                color = CafeColors.dividerColor
+                color = Color.DarkGray
             )
         }
     }

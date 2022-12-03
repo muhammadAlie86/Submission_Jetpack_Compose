@@ -11,7 +11,6 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.submission.submissionjetpackcompose.presentation.component.ShimmerAnimation
 import com.submission.submissionjetpackcompose.presentation.component.ShimmerListItem
-import com.submission.submissionjetpackcompose.utils.mvi.BaseViewState
 
 @Composable
 fun DestinationContent(
@@ -24,17 +23,15 @@ fun DestinationContent(
     LazyColumn(
         contentPadding = paddingValues,
         modifier = Modifier
-            .fillMaxSize()
-            .padding(top = 4.dp),
+            .fillMaxWidth()
+            .padding(top = 4.dp, bottom = 50.dp),
     ) {
-        items(listDestination.size) { index ->
-            listDestination[index].let {
-                DestinationRow(
-                    viewModel = viewModel,
-                    dto = it,
-                    onDetailClick = { selectItem.invoke(it.id) }
-                )
-            }
+        items(listDestination.count()) { index ->
+            DestinationRow(
+                viewModel = viewModel,
+                dto = listDestination[index],
+                onDetailClick = { selectItem.invoke(index) }
+            )
         }
 
     }

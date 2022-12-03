@@ -19,7 +19,7 @@ object DestinationDetailScreenDestination : TypedDestination<DestinationDetailSc
     ): Direction {
         return object : Direction {
             override val route = "$routeId" + 
-					"?id=${id.toString()}"
+					"?id=$id"
         }
     }
     
