@@ -16,9 +16,6 @@ import com.submission.submissionjetpackcompose.presentation.component.Destinatio
 import com.submission.submissionjetpackcompose.presentation.component.DialogBoxLoadingView
 import com.submission.submissionjetpackcompose.presentation.component.EmptyView
 import com.submission.submissionjetpackcompose.presentation.component.ErrorView
-import com.submission.submissionjetpackcompose.presentation.view.list.DestinationContent
-import com.submission.submissionjetpackcompose.presentation.view.list.DestinationEvent
-import com.submission.submissionjetpackcompose.presentation.view.list.DestinationState
 import com.submission.submissionjetpackcompose.presentation.view.list.DestinationViewModel
 import com.submission.submissionjetpackcompose.ui.theme.CafeColors
 import com.submission.submissionjetpackcompose.utils.base.cast
@@ -109,8 +106,7 @@ private fun FavoritesPage(
             viewModel.onTriggerEvent(FavoriteEvent.LoadFavorites)
         }
         is BaseViewState.Loading -> DialogBoxLoadingView()
-        else -> {
-            DialogBoxLoadingView()}
+        else -> {}
     }
 
     LaunchedEffect(key1 = viewModel, block = {

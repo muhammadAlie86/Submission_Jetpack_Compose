@@ -22,7 +22,6 @@ fun DetailScreen(
 
     val uiState by viewModel.uiState.collectAsState()
 
-    DetailBody{
         DetailBody(pressOnBack = {
             navigator.navigateUp()
         }) {
@@ -46,7 +45,7 @@ fun DetailScreen(
                 }
                 else -> {}
             }
-        }
+
 
         LaunchedEffect(key1 = viewModel, block = {
             viewModel.onTriggerEvent(DestinationDetailEvent.LoadDetail(id))

@@ -15,6 +15,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.submission.submissionjetpackcompose.domain.model.DestinationDomain
 import com.submission.submissionjetpackcompose.presentation.component.FavoriteButtonDetail
+import com.submission.submissionjetpackcompose.presentation.component.RatingBar
 import com.submission.submissionjetpackcompose.ui.theme.*
 import com.submission.submissionjetpackcompose.utils.nav.NavigationProvider
 
@@ -60,12 +61,7 @@ fun DetailDestinationView(viewModel: DetailViewModel,dto : DestinationDomain, na
                         )
                         FavoriteButtonDetail(viewModel, dto)
                     }
-                    Text(
-                        text = dto.rate.toString(),
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis,
-                        style = CafeTypography.h5
-                    )
+                    RatingBar( rating = dto.rate)
                     Text(
                         text = dto.location,
                         maxLines = 2,

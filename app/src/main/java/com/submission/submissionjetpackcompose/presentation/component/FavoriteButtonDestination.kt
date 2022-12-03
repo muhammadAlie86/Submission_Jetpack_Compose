@@ -4,12 +4,8 @@ import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -30,7 +26,7 @@ fun FavoriteButtonDestination(
     viewModel: DestinationViewModel = hiltViewModel(),
     dto: DestinationDomain
 ) {
-    var isFavorite by rememberSaveable(dto) { mutableStateOf(dto.isFavorite) }
+    var isFavorite by remember { mutableStateOf(dto.isFavorite) }
     IconButton(onClick = {
         isFavorite = !isFavorite
         dto.isFavorite = isFavorite

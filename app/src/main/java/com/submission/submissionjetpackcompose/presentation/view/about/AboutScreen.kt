@@ -9,9 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.submission.submissionjetpackcompose.R
-import com.submission.submissionjetpackcompose.presentation.component.DialogBoxLoadingView
-import com.submission.submissionjetpackcompose.presentation.component.EmptyView
-import com.submission.submissionjetpackcompose.presentation.component.ErrorView
+import com.submission.submissionjetpackcompose.presentation.component.*
 import com.submission.submissionjetpackcompose.utils.base.cast
 import com.submission.submissionjetpackcompose.utils.mvi.BaseViewState
 import com.submission.submissionjetpackcompose.utils.nav.NavigationProvider
@@ -37,7 +35,11 @@ fun AboutScreen(
                     viewModel.onTriggerEvent(AboutEvent.LoadAbout)
                 }
             )
-            is BaseViewState.Loading -> DialogBoxLoadingView()
+            is BaseViewState.Loading -> repeat(5) {
+                ShimmerAnimation {
+                    ShimmerAbout(brush = it)
+                }
+            }
             else -> {}
         }
     }

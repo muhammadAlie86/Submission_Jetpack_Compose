@@ -17,7 +17,7 @@ class DestinationData @Inject constructor() {
             DestinationEntity(
                 1,
                 "Mandalika",
-                4.5F,
+                4.2F,
                 "Nusa Tenggara Barat",
                 "Jika Lombok memang dikenal akan keindahan gili-gilinya, Mandalika juga nggak mau kalah. Untuk menarik perhatian dunia, pemerintah tengah membangun resort dan infrastruktur lainnya. Bahkan kecantikan pantai-pantainya nggak kalah menarik dengan yang ada di Bali. Lokasi ini juga menjadi tempat sempurna untuk berselancar. Terutama di Pantai Ubrug. Tak hanya punya pemandangan yang begitu menawan, ombak besarnya pun cukup menantang.",
                 R.drawable.ic_mandalika
@@ -50,7 +50,7 @@ class DestinationData @Inject constructor() {
             DestinationEntity(
                 4,
                 "Kepulauan Anambas",
-                4.3F,
+                3.8F,
                 "Kepulauan Riau",
                 "Kepulauan Anambas yang ada di Kepulauan Riau ini pada 2013 lalu pernah dinobatkan sebagai Kepulauan Tropis Terbaik di Asia menurut CNN. Predikat tersebut tentu saja diberikan pada Anambas sebab ia memiliki bentang alam yang luar biasa.Berkunjung ke sini, Teman Traveler akan terpikat dengan pasirnya yang putih dan lembut serta terumbu karang yang terbentuk alami dengan cantik. Nggak pengin berkunjung ke Maldivesnya Indonesia ini?",
                 R.drawable.ic_anambas
@@ -62,7 +62,7 @@ class DestinationData @Inject constructor() {
             DestinationEntity(
                 5,
                 "Taman Nasional Way Kambas",
-                4.0F,
+                3.8F,
                 "Lampung",
                 "Pertama kali dibangun pada 1985, Taman Nasional Way Kambas adalah tempat yang tepat untuk melihat gajah-gajah lebih dekat. Diresmikan sebagai sekolah gajah pertama di Indonesia, tempat ini merupakan balai konservasi sekaligus pelatihan gajah.Di lokasi yang sama juga terdapat International Rhino Foundation yang dibangun sebagai kawasan penangkaran badak dari ancaman kepunahan. Agendakan untuk main ke sini saat liburan ke Lampung ya!",
                 R.drawable.ic_waykambas
@@ -72,7 +72,7 @@ class DestinationData @Inject constructor() {
         catalogueDestination.add(
             DestinationEntity(
                 6,
-                "Pntai Parai Tenggiri",
+                "Pantai Parai Tenggiri",
                 4.2F,
                 "Banka Belitung",
                 "Pantai-pantai yang ada di Bangka Belitung bisa mudah dikenali dari batuan berbagai ukuran yang tersebar di pesisirnya. Begitu pula daya tarik yang dimiliki Pantai Parai Tenggiri. Selain batuan yang eksotis, Pantai Parai Tenggiri cukup landai dengan air laut berwarna hijau toska.Pasir yang ada di pantai ini cukup lembut, menyenangkan untuk jalan-jalan di atasnya. Selain itu, ombak di sini juga terkenal tenang. Benar-benar pilihan yang tepat untuk menenangkan pikiran.",
@@ -94,7 +94,7 @@ class DestinationData @Inject constructor() {
             DestinationEntity(
                 8,
                 "Kepulauan Seribu",
-                4.2F,
+                3.8F,
                 "DKI Jakarta",
                 "Terletak di bagian utara Jakarta, Kepulauan Seribu seperti surga berjarak dekat yang bisa dikunjungi warga ibu kota saat penat. Berbagai atraksi menyenangkan bisa Teman Traveler dapatkan di sini! Seperti mengunjungi zona konservasi sekaligus tempat wisata di Taman Nasional Kepulauan Seribu.Bukan hanya itu, wisatawan juga bisa mengunjungi beberapa pulau cantik yang ada di Kepulauan Seribu. Seperti Pulau Onrust, Pulau Kahyangan dan Pulau Bidadari. Perairan di pulau-pulau tersebut cocok untuk snorkeling, menyelam dan beberapa keseruan lainnya!",
                 R.drawable.ic_kepulauan_seribu
@@ -105,7 +105,7 @@ class DestinationData @Inject constructor() {
             DestinationEntity(
                 9,
                 "Pura Luhur Uluwatu",
-                4.0F,
+                4.2F,
                 "Bali",
                 "Siapa yang tak ingin traveling ke Bali, banyak destinasi cantik yang ditawarkan di sini. Salah satunya adalah ragam Pura yang terdapat di dalamnya. Bahkan saking banyaknya, Bali disebut sebagai Pulau Seribu Pura. Contoh yang rekomended adalah Pura Luhur Uluwatu.Lokasi pura ini berada di Desa Pecatu, Kecamatan Kuta, Badung, Bali. Tempatnya berada di ketinggian 97 meter dari atas permukaan laut. Oh iya, kamu bisa menyaksikkan pertunjukkan Tari Kecak saat berada di sini, ini merupakan salah satu spot terbaiknya.",
                 R.drawable.ic_pura
